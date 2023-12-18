@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>App</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+<form>
+<table style="width:100%">
+    <tr>
+        <th>IP</th>
+        <th>Pool Name</th> 
+        <th>Node Name</th>
+        <th>Availability</th>
+        <th>Enabled</th>
+        <th>Connections</th>
+        <th>Prio</th>
+    </tr>
+
+    {% set stats = dataset[0] %}
+    {% set configs = dataset[1] %}
+
+    {% for pool_stat in dataset[0] %}
+        {% set pool_index = loop.index %}
+        {% for entry in pool_stat["entries"] %}
+            {% set member_index =  loop.index %}
+            <tr>
+                <td>{{ pool_stat["entries"][entry]["nestedStats"]["entries"]["addr"]["description"] }}</td>
+                <td>{{ pool_stat["entries"][entry]["nestedStats"]["entries"]["poolName"]["description"] }}</td>
+                <td>{{ pool_stat["entries"][entry]["nestedStats"]["entries"]["nodeName"]["description"] }}</td>
+                <td>{{ pool_stat["entries"][entry]["nestedStats"]["entries"]["status.availabilityState"]["description"] }}</td>
+                <td>{{ pool_stat["entries"][entry]["nestedStats"]["entries"]["status.enabledState"]["description"] }}</td>
+                {% if pool_stat["entries"][entry]["nestedStats"]["entries"]["serverside.curConns"]["value"] > 0 %}
+                    <td class="active">{{ pool_stat["entries"][entry]["nestedStats"]["entries"]["serverside.curConns"]["value"] }}</td>
+                {% else %}
+                    <td>{{ pool_stat["entries"][entry]["nestedStats"]["entries"]["serverside.curConns"]["value"] }}</td>
+                {% endif %}
+                <td>{{ configs[pool_index - 1]["items"][member_index - 1]["priorityGroup"] }}</td>
+            </tr>
+        {% endfor %}
+    {% endfor %}
+  </table>
+</body>
+</html>

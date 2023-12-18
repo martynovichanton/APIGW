@@ -1,0 +1,5 @@
+post---exec---{"url":"/dvmdb/adom/root/workspace/lock"}
+post---delete---{"data":["test_100.100.100.1-99"],"url":"/pm/config/adom/root/obj/firewall/addrgrp/testgroup_1/member"}
+post---delete---{"data":["test_100.100.100.1-99"],"url":"/pm/config/adom/root/obj/firewall/addrgrp/testgroup_2/member"}
+post---exec---{"url":"/dvmdb/adom/root/workspace/commit"}
+post---exec---{"url":"/dvmdb/adom/root/workspace/unlock"}

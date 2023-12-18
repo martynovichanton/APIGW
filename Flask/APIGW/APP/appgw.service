@@ -1,0 +1,12 @@
+[Unit]
+Description=uWSGI service for APP GW
+After=network.target
+
+[Service]
+User=antonm
+Group=nginx
+WorkingDirectory=/srv/APIGW
+ExecStart=/usr/local/bin/uwsgi --ini /srv/APIGW/APP/wsgi.ini
+
+[Install]
+WantedBy=multi-user.target

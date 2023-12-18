@@ -1,0 +1,750 @@
+{
+	"info": {
+		"_postman_id": "c2d11fd8-bb77-46ee-901c-53f2f67542f1",
+		"name": "Fortimanager",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "exec login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"method\": \"exec\",\r\n   \"params\": [ {\r\n      \"url\": \"/sys/login/user\",\r\n      \"data\": {\"user\":\"{{user}}\",\"passwd\":\"{{pass}}\"}\r\n   } ]\r\n}\r\n"
+				},
+				"url": {
+					"raw": "https://10.1.1.1/jsonrpc",
+					"protocol": "https",
+					"host": [
+						"10",
+						"1",
+						"1",
+						"1"
+					],
+					"path": [
+						"jsonrpc"
+					]
+				},
+				"description": "login"
+			},
+			"response": []
+		},
+		{
+			"name": "exec lockinfo",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"method\": \"exec\",\r\n   \"params\": [ {\r\n      \"url\": \"/dvmdb/adom/root/workspace/lockinfo\"\r\n   } ],\r\n   \"session\": \"{{session}}\",\r\n   \"id\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://10.1.1.1/jsonrpc",
+					"protocol": "https",
+					"host": [
+						"10",
+						"1",
+						"1",
+						"1"
+					],
+					"path": [
+						"jsonrpc"
+					]
+				},
+				"description": "check if lock ? "
+			},
+			"response": []
+		},
+		{
+			"name": "exec lock",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"method\": \"exec\",\r\n   \"params\": [ {\r\n      \"url\": \"/dvmdb/adom/root/workspace/lock\"\r\n   } ],\r\n   \"session\": \"{{session}}\",\r\n   \"id\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://10.1.1.1/jsonrpc",
+					"protocol": "https",
+					"host": [
+						"10",
+						"1",
+						"1",
+						"1"
+					],
+					"path": [
+						"jsonrpc"
+					]
+				},
+				"description": "lock"
+			},
+			"response": []
+		},
+		{
+			"name": "exec unlock",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"method\": \"exec\",\r\n   \"params\": [ {\r\n      \"url\": \"/dvmdb/adom/root/workspace/unlock\"\r\n   } ],\r\n   \"session\": \"{{session}}\",\r\n   \"id\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://10.1.1.1/jsonrpc",
+					"protocol": "https",
+					"host": [
+						"10",
+						"1",
+						"1",
+						"1"
+					],
+					"path": [
+						"jsonrpc"
+					]
+				},
+				"description": "unlock"
+			},
+			"response": []
+		},
+		{
+			"name": "exec commit",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"method\": \"exec\",\r\n   \"params\": [ {\r\n      \"url\": \"/dvmdb/adom/root/workspace/commit\"\r\n   } ],\r\n   \"session\": \"{{session}}\",\r\n   \"id\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://10.1.1.1/jsonrpc",
+					"protocol": "https",
+					"host": [
+						"10",
+						"1",
+						"1",
+						"1"
+					],
+					"path": [
+						"jsonrpc"
+					]
+				},
+				"description": "commit"
+			},
+			"response": []
+		},
+		{
+			"name": "get fw addrgrp",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"method\": \"get\",\r\n  \"params\": [\r\n    {    \r\n      \"filter\": [\"name\", \"==\", \"testgroup_1\"],\r\n      \"url\": \"/pm/config/adom/root/obj/firewall/addrgrp\"\r\n    }\r\n  ],\r\n  \"session\": \"{{session}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://10.1.1.1/jsonrpc",
+					"protocol": "https",
+					"host": [
+						"10",
+						"1",
+						"1",
+						"1"
+					],
+					"path": [
+						"jsonrpc"
+					]
+				},
+				"description": "get member by group name"
+			},
+			"response": []
+		},
+		{
+			"name": "get fw addrgrp all",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"method\": \"get\",\r\n  \"params\": [\r\n    {    \r\n     \r\n      \"url\": \"/pm/config/adom/root/obj/firewall/addrgrp\"\r\n    }\r\n  ],\r\n  \"session\": \"{{session}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://10.1.1.1/jsonrpc",
+					"protocol": "https",
+					"host": [
+						"10",
+						"1",
+						"1",
+						"1"
+					],
+					"path": [
+						"jsonrpc"
+					]
+				},
+				"description": "get all address groups"
+			},
+			"response": []
+		},
+		{
+			"name": "get fw addr",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"method\": \"get\",\r\n  \"params\": [\r\n    {    \r\n      \"filter\": [\"name\", \"==\", \"test_1\"],\r\n      \"url\": \"/pm/config/adom/root/obj/firewall/address\"\r\n    }\r\n  ],\r\n  \"session\": \"{{session}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://10.1.1.1/jsonrpc",
+					"protocol": "https",
+					"host": [
+						"10",
+						"1",
+						"1",
+						"1"
+					],
+					"path": [
+						"jsonrpc"
+					]
+				},
+				"description": "check if address exist"
+			},
+			"response": []
+		},
+		{
+			"name": "get fw addr all",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"method\": \"get\",\r\n  \"params\": [\r\n    {    \r\n           \"url\": \"/pm/config/adom/root/obj/firewall/address\"\r\n    }\r\n  ],\r\n  \"session\": \"{{session}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://10.1.1.1/jsonrpc",
+					"protocol": "https",
+					"host": [
+						"10",
+						"1",
+						"1",
+						"1"
+					],
+					"path": [
+						"jsonrpc"
+					]
+				},
+				"description": "get all addresses "
+			},
+			"response": []
+		},
+		{
+			"name": "add fw addr ipmask",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"method\": \"add\",\r\n  \"params\": [\r\n    {\r\n      \"data\": {\r\n        \"name\": \"test_2\",\r\n        \"subnet\": \"10.10.10.2/32\",\r\n        \"type\": \"ipmask\"\r\n      },\r\n      \"url\": \"/pm/config/adom/root/obj/firewall/address/\"\r\n    }\r\n  ],\r\n  \"session\": \"{{session}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://10.1.1.1/jsonrpc",
+					"protocol": "https",
+					"host": [
+						"10",
+						"1",
+						"1",
+						"1"
+					],
+					"path": [
+						"jsonrpc"
+					]
+				},
+				"description": "create a new member"
+			},
+			"response": []
+		},
+		{
+			"name": "add fw addr iprange",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"method\": \"add\",\r\n  \"params\": [\r\n    {\r\n      \"data\": {\r\n        \"name\": \"test_3\",\r\n        \"start-ip\": \"10.10.10.31\",\r\n        \"end-ip\": \"10.10.10.39\",\r\n        \"type\": \"iprange\"\r\n      },\r\n      \"url\": \"/pm/config/adom/root/obj/firewall/address/\"\r\n    }\r\n  ],\r\n  \"session\": \"{{session}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://10.1.1.1/jsonrpc",
+					"protocol": "https",
+					"host": [
+						"10",
+						"1",
+						"1",
+						"1"
+					],
+					"path": [
+						"jsonrpc"
+					]
+				},
+				"description": "create a new  ip range"
+			},
+			"response": []
+		},
+		{
+			"name": "add fw addr fqdn",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"method\": \"add\",\r\n  \"params\": [\r\n    {\r\n      \"data\": {\r\n        \"name\": \"test_4\",\r\n        \"fqdn\": \"test_4.com\",\r\n        \"type\": \"fqdn\"\r\n      },\r\n      \"url\": \"/pm/config/adom/root/obj/firewall/address/\"\r\n    }\r\n  ],\r\n  \"session\": \"{{session}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://10.1.1.1/jsonrpc",
+					"protocol": "https",
+					"host": [
+						"10",
+						"1",
+						"1",
+						"1"
+					],
+					"path": [
+						"jsonrpc"
+					]
+				},
+				"description": "create a new fqdn"
+			},
+			"response": []
+		},
+		{
+			"name": "add member to group",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"method\": \"add\",\r\n  \"params\": [\r\n    {\r\n      \"data\": [\r\n          \"test_2\"\r\n      ],\r\n      \"url\": \"/pm/config/adom/root/obj/firewall/addrgrp/testgroup_1/member\"\r\n    }\r\n  ],\r\n  \"session\": \"{{session}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://10.1.1.1/jsonrpc",
+					"protocol": "https",
+					"host": [
+						"10",
+						"1",
+						"1",
+						"1"
+					],
+					"path": [
+						"jsonrpc"
+					]
+				},
+				"description": "add member tester1 to group test"
+			},
+			"response": []
+		},
+		{
+			"name": "delete member from group",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"method\": \"delete\",\r\n  \"params\": [\r\n    {\r\n      \"data\": [\r\n          \"test_2\"\r\n      ],\r\n      \"url\": \"/pm/config/adom/root/obj/firewall/addrgrp/testgroup_1/member\"\r\n    }\r\n  ],\r\n  \"session\": \"{{session}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://10.1.1.1/jsonrpc",
+					"protocol": "https",
+					"host": [
+						"10",
+						"1",
+						"1",
+						"1"
+					],
+					"path": [
+						"jsonrpc"
+					]
+				},
+				"description": "add member tester1 to group test"
+			},
+			"response": []
+		},
+		{
+			"name": "get task",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"method\": \"get\",\r\n   \"params\": [ {\r\n      \"url\": \"/task/task/17812\"\r\n   } ],\r\n   \"session\": \"{{session}}\",\r\n   \"id\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://10.1.1.1/jsonrpc",
+					"protocol": "https",
+					"host": [
+						"10",
+						"1",
+						"1",
+						"1"
+					],
+					"path": [
+						"jsonrpc"
+					]
+				},
+				"description": "check if lock ? "
+			},
+			"response": []
+		},
+		{
+			"name": "get policy package status",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"method\": \"get\",\r\n   \"params\": [ {\r\n      \"url\": \"/pm/config/adom/root/_package/status\"\r\n   } ],\r\n   \"session\": \"{{session}}\",\r\n   \"id\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://10.1.1.1/jsonrpc",
+					"protocol": "https",
+					"host": [
+						"10",
+						"1",
+						"1",
+						"1"
+					],
+					"path": [
+						"jsonrpc"
+					]
+				},
+				"description": "check if lock ? "
+			},
+			"response": []
+		},
+		{
+			"name": "exec install package preview",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"method\": \"exec\",\r\n   \"params\": [\r\n    {\r\n      \"data\": {\r\n        \"adom\": \"root\",\r\n        \"flags\": [\"preview\"],\r\n        \"pkg\": \"fw-site1-corp\"\r\n      }, \r\n      \"url\": \"securityconsole/install/package\"\r\n    }\r\n  ], \r\n   \"session\": \"{{session}}\",\r\n   \"id\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://10.1.1.1/jsonrpc",
+					"protocol": "https",
+					"host": [
+						"10",
+						"1",
+						"1",
+						"1"
+					],
+					"path": [
+						"jsonrpc"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "exec install preview",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"method\": \"exec\",\r\n   \"params\": [\r\n    {\r\n      \"data\": {\r\n        \"adom\": \"root\",\r\n        \"device\": \"fw-site1-corp\"\r\n      }, \r\n      \"url\": \"securityconsole/install/preview\"\r\n    }\r\n  ], \r\n   \"session\": \"{{session}}\",\r\n   \"id\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://10.1.1.1/jsonrpc",
+					"protocol": "https",
+					"host": [
+						"10",
+						"1",
+						"1",
+						"1"
+					],
+					"path": [
+						"jsonrpc"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "exec preview result",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"method\": \"exec\",\r\n   \"params\": [\r\n    {\r\n      \"data\": {\r\n        \"adom\": \"root\",\r\n        \"device\": \"fw-site1-corp\"\r\n      }, \r\n      \"url\": \"securityconsole/preview/result\"\r\n    }\r\n  ], \r\n   \"session\": \"{{session}}\",\r\n   \"id\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://10.1.1.1/jsonrpc",
+					"protocol": "https",
+					"host": [
+						"10",
+						"1",
+						"1",
+						"1"
+					],
+					"path": [
+						"jsonrpc"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "exec cancel install",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"method\": \"exec\",\r\n   \"params\": [\r\n    {\r\n      \"data\": {\r\n        \"adom\": \"root\"\r\n      }, \r\n      \"url\": \"securityconsole/package/cancel/install\"\r\n    }\r\n  ], \r\n   \"session\": \"{{session}}\",\r\n   \"id\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://10.1.1.1/jsonrpc",
+					"protocol": "https",
+					"host": [
+						"10",
+						"1",
+						"1",
+						"1"
+					],
+					"path": [
+						"jsonrpc"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "exec install policy",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"method\": \"exec\",\r\n   \"params\": [\r\n    {\r\n      \"data\": {\r\n        \"adom\": \"root\",\r\n        \"pkg\": \"fw-site1-corp\",\r\n        \"scope\": [\r\n          {\r\n            \"name\": \"fw-site1-corp\",\r\n            \"vdom\": \"fw-site1-corp\"\r\n          }\r\n        ]\r\n      },\r\n      \"url\": \"securityconsole/install/package\"\r\n    }\r\n  ], \r\n   \"session\": \"{{session}}\",\r\n   \"id\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://10.1.1.1/jsonrpc",
+					"protocol": "https",
+					"host": [
+						"10",
+						"1",
+						"1",
+						"1"
+					],
+					"path": [
+						"jsonrpc"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				],
+				"id": "a7b2dc01-288f-459c-9ade-0640af6732b5"
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				],
+				"id": "0ca23c11-7dcc-4e03-9387-67724e2dc504"
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "f5370854-a0cd-4113-85d9-1e1f706d28ac",
+			"key": "user",
+			"value": ""
+		},
+		{
+			"id": "dc42e555-b523-479b-8293-29178a06c0ad",
+			"key": "pass",
+			"value": ""
+		},
+		{
+			"id": "c518feab-402c-4383-a2f1-05a390391b49",
+			"key": "session",
+			"value": ""
+		}
+	],
+	"protocolProfileBehavior": {}
+}

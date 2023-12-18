@@ -1,0 +1,41 @@
+textarea {
+  width:100%;
+}
+
+tr td, th{
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.rowSelected {
+  background-color: lightgray;
+  color: black;
+}
+
+.activeConns {
+  background-color: green;
+}
+
+.disabledMember {
+  background-color: gray;
+}
+
+.offlineMember {
+  background-color: red; 
+}
+
+#cards {
+  margin-top: 10px;
+}
+
+#actionLog {
+  margin-top: 10px;
+}
+
+#log {
+  margin-top: 10px;
+}
+
+.tokensbtn {
+  width: 100%;
+}

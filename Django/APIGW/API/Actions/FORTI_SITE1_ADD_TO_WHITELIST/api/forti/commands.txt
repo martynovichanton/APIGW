@@ -1,0 +1,6 @@
+post---exec---{"url":"/dvmdb/adom/root/workspace/lock"}
+post---add---{"data":{"name":"test_100.100.100.1_100.100.100.99","start-ip":"100.100.100.1","end-ip":"100.100.100.99","type":"iprange"},"url":"/pm/config/adom/root/obj/firewall/address/"}
+post---add---{"data":["test_100.100.100.1_100.100.100.99"],"url":"/pm/config/adom/root/obj/firewall/addrgrp/testgroup_1/member"}
+post---add---{"data":["test_100.100.100.1_100.100.100.99"],"url":"/pm/config/adom/root/obj/firewall/addrgrp/testgroup_2/member"}
+post---exec---{"url":"/dvmdb/adom/root/workspace/commit"}
+post---exec---{"url":"/dvmdb/adom/root/workspace/unlock"}

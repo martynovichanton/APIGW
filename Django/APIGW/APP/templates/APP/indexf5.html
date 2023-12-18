@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>API F5</title>
+
+        {% load static %}
+
+        <link rel="stylesheet" href="{% static 'APIGW/css/stylesf5.css' %}">
+        <link rel="stylesheet" href="{% static 'APIGW/css/bootstrap.min.css' %}">
+        <script src="{% static 'APIGW/js/jquery-3.5.1.min.js' %}"></script>
+        <script src="{% static 'APIGW/js/bootstrap.min.js' %}"></script>  
+        <script src="{% static 'APIGW/js/appf5.js' %}"></script>
+
+        <!-- <link rel="stylesheet" href="/static/APIGW/css/stylesf5.css">
+        <link rel="stylesheet" href="/static/APIGW/css/bootstrap.min.css">
+        <script src="/static/APIGW/js/jquery-3.5.1.min.js"></script>
+        <script src="/static/APIGW/js/bootstrap.min.js"></script>  
+        <script src="/static/APIGW/js/appf5.js"></script> -->
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group row">
+                        <div class="col-md-4">
+                            <input class="form-control mt-2" id="user" placeholder="User" type="text">
+                        </div>
+                        <div class="col-md-4">
+                            <input class="form-control mt-2" id="pass" placeholder="Password" type="password">
+                        </div>
+                        <div class="col-md-4">
+                            <input class="form-control mt-2" id="token" placeholder="Token" type="password">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-dark mt-2 tokensbtn" id="F5_SITE1_GET_TOKEN">F5_SITE1_GET_TOKEN</button>
+                        </div>
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-dark mt-2 tokensbtn" id="F5_SITE2_GET_TOKEN">F5_SITE2_GET_TOKEN</button>
+                        </div>
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-dark mt-2 tokensbtn" id="F5_SITE3_GET_TOKEN">F5_SITE3_GET_TOKEN</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4">
+                    <button type="button" class="btn btn-dark mt-2 btn-block commandsbtn" id="F5_SITE1_commands1">F5_SITE1_commands1</button>
+                    <button type="button" class="btn btn-dark mt-2 btn-block commandsbtn" id="F5_SITE1_commands2">F5_SITE1_commands2</button>
+                    <button type="button" class="btn btn-dark mt-2 btn-block statsbtn" id="F5_SITE1_stats">F5_SITE1_stats</button>
+                </div>
+                <div class="col-lg-4">
+                    <button type="button" class="btn btn-dark mt-2 btn-block commandsbtn" id="F5_SITE2_commands1">F5_SITE2_commands1</button>
+                    <button type="button" class="btn btn-dark mt-2 btn-block commandsbtn" id="F5_SITE2_commands2">F5_SITE2_commands2</button>
+                    <button type="button" class="btn btn-dark mt-2 btn-block statsbtn" id="F5_SITE2_stats">F5_SITE2_stats</button>
+                </div>
+                <div class="col-lg-4">
+                    <button type="button" class="btn btn-dark mt-2 btn-block commandsbtn" id="F5_SITE3_commands1">F5_SITE3_commands1</button>
+                    <button type="button" class="btn btn-dark mt-2 btn-block commandsbtn" id="F5_SITE3_commands2">F5_SITE3_commands2</button>
+                    <button type="button" class="btn btn-dark mt-2 btn-block statsbtn" id="F5_SITE3_stats">F5_SITE3_stats</button>
+                </div>
+            </div>
+            
+            <textarea id="actionLog" class="form-control" name="text" rows="6" placeholder="Action log" readonly></textarea>
+            <textarea id="log" class="form-control" name="text" rows="20" placeholder="Commands log" readonly></textarea>
+
+            <div id="cards">
+                <table class="table table-hover" id="tableLog"> 
+                    <thead> 
+                        <th>Pool Name</th>
+                        <th>IP</th> 
+                        <th>Node Name</th>
+                        <th>Availability</th>
+                        <th>Enabled</th>
+                        <th>Conns</th>
+                        <th>Prio</th>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table> 
+            </div>
+            
+        </div>
+    </body>
+</html>

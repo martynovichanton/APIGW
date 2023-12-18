@@ -1,0 +1,377 @@
+{
+	"info": {
+		"_postman_id": "41af1b25-acc8-4e46-a532-3a6fed180edf",
+		"name": "F5 API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/f5api",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/f5api",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"f5api"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/f5api/F5_SITE1_GET_TOKEN",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "user",
+						"value": "{{user}}"
+					},
+					{
+						"key": "password",
+						"value": "{{password}}"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/f5api/F5_SITE1_GET_TOKEN",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"f5api",
+						"F5_SITE1_GET_TOKEN"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/f5api/F5_SITE2_GET_TOKEN",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "user",
+						"value": "{{user}}"
+					},
+					{
+						"key": "password",
+						"value": "{{password}}"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/f5api/F5_SITE2_GET_TOKEN",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"f5api",
+						"F5_SITE2_GET_TOKEN"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/f5api/F5_SITE3_GET_TOKEN",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "user",
+						"value": "{{user}}"
+					},
+					{
+						"key": "password",
+						"value": "{{password}}"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/f5api/F5_SITE3_GET_TOKEN",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"f5api",
+						"F5_SITE3_GET_TOKEN"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/f5api/F5_SITE1_commands1",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "token",
+						"value": "{{token}}"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:8000/f5api/F5_SITE1_commands1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"f5api",
+						"F5_SITE1_commands1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/f5api/F5_SITE1_commands2",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "token",
+						"value": "{{token}}"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:8000/f5api/F5_SITE1_commands2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"f5api",
+						"F5_SITE1_commands2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/f5api/F5_SITE1_show_stats",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "token",
+						"value": "{{token}}"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:8000/f5api/F5_SITE1_show_stats",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"f5api",
+						"F5_SITE1_show_stats"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/f5api/F5_SITE1_show_config",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "token",
+						"value": "{{token}}"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:8000/f5api/F5_SITE1_show_config",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"f5api",
+						"F5_SITE1_show_config"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "test",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "X-F5-Auth-Token",
+						"value": "{{token}}",
+						"type": "text"
+					},
+					{
+						"key": "Cache-Control",
+						"value": "no-cache",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://10.2.2.130/mgmt/tm/ltm/virtual",
+					"protocol": "https",
+					"host": [
+						"10",
+						"2",
+						"2",
+						"130"
+					],
+					"path": [
+						"mgmt",
+						"tm",
+						"ltm",
+						"virtual"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "b27975ca-08ea-4e27-8296-816454688f69",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "1e67f198-f242-45f1-b4ca-1df10d86fd5a",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "a8b494f1-65d7-4e6a-8100-9383feec6493",
+			"key": "token",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"id": "8c3d2e98-32d4-4b9f-a2b1-50b9145e22be",
+			"key": "user",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"id": "2dcdf924-17e8-4ddc-a2d0-37874609f4fb",
+			"key": "password",
+			"value": "",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": {}
+}

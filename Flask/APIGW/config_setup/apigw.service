@@ -1,0 +1,36 @@
+file /etc/systemd/system/apigw.service:
+
+[Unit]
+Description=uWSGI service for API GW
+After=network.target
+
+[Service]
+User=antonm
+Group=nginx
+WorkingDirectory=/srv/APIGW
+ExecStart=/usr/local/bin/uwsgi --ini /srv/APIGW/API/wsgi.ini
+
+[Install]
+WantedBy=multi-user.target
+
+
+***********************************************************************
+
+Service enable:
+the service is inside /etc/systemd/system/
+sudo systemctl start apigw
+sudo systemctl enable apigw
+sudo systemctl start appgw
+sudo systemctl enable appgw
+systemctl daemon-reload
+
+Need to add the user that runs wsgi to group nginx:
+sudo usermod -a -G nginx antonm
+
+Set permissions to the folders where the socket is created to:
+sudo chmod 775 /srv
+sudo chmod 775 /srv/APIGW
+sudo chmod 775 /srv/APIGW/API
+sudo chmod 775 /srv/APIGW/APP
+the apigw.sock cocket is inside /srv/APIGW/API
+the appgw.sock cocket is inside /srv/APIGW/APP

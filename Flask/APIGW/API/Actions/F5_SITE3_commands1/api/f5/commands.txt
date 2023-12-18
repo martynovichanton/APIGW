@@ -1,0 +1,8 @@
+get---/mgmt/tm/ltm/pool/~Partition01~testpool99---
+patch---/mgmt/tm/ltm/pool/~Partition01~testpool99/members/~Partition01~testnode1:443---{"priorityGroup":100}
+patch---/mgmt/tm/ltm/pool/~Partition01~testpool99/members/~Partition01~testnode2:443---{"priorityGroup":50}
+patch---/mgmt/tm/ltm/pool/~Partition01~testpool99/members/~Partition01~testnode1:443---{"session":"user-disabled"}
+patch---/mgmt/tm/ltm/pool/~Partition01~testpool99/members/~Partition01~testnode1:443---{"session":"user-enabled"}
+post---/mgmt/tm/util/bash---{"command":"run", "utilCmdArgs": "-c 'echo \"cd /Partition01; delete /sys connection ss-server-addr 10.99.99.1%1 ss-server-port 443\" | tmsh | bash'"}
+post---/mgmt/tm/util/bash---{"command":"run", "utilCmdArgs": "-c 'echo \"cd /Partition01; delete /ltm persistence persist-records node-addr 10.99.99.1%1 node-port 443 \" | tmsh | bash'"}
+get---/mgmt/tm/ltm/pool/~Partition01~testpool99/members?$select=name,fullPath,address,priorityGroup,state,selfLink---

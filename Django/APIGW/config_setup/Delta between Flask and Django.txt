@@ -1,0 +1,10 @@
+
+1 project with 2 apps
+dataset return in interate() changed to return dictionary {"dataset":dataset} instead of list
+static files location under APIGW/static/APIGW
+template files {% load static %}
+changed config file and actions dir to API/
+request.json changed to json.loads(request.body) in forti views
+file socket apigw.sock is inside /srv/APIGW
+get token changed to f5api/F5_SITE1_GET_TOKEN and fortiapi/FORTI_SITE1_GET_TOKEN
+nginx /static/ is alias /srv/APIGW/static/
