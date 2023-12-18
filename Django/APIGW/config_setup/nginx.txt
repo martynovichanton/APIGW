@@ -1,0 +1,74 @@
+limit_req_zone $binary_remote_addr zone=limit-normal:10m rate=1r/s;
+limit_req_zone $binary_remote_addr zone=limit-low:10m rate=1r/m;
+
+server {
+    listen 443 ssl;
+    server_name         localhost;
+    ssl_certificate     /etc/nginx/Certs/net.crt;
+    ssl_certificate_key /etc/nginx/Certs/net.key;
+    ssl_protocols       TLSv1.2;
+
+
+    location / {
+        #keepalive_timeout 305;
+        default_type application/json;
+        return 200 '{"F5 API":"/f5api/", "F5 APP":"/f5app/"}';
+    }
+
+    location /f5api/ {
+        limit_req zone=limit-normal burst=20 nodelay;
+        include uwsgi_params;
+        uwsgi_pass unix:/srv/APIGW/apigw.sock;    
+        #uwsgi_pass 127.0.0.1:8443;
+        uwsgi_read_timeout 300;
+        #proxy_pass http://localhost:6001;
+        #proxy_read_timeout 300;
+    }
+
+    location /fortiapi/ {
+        limit_req zone=limit-normal burst=20 nodelay;
+        include uwsgi_params;
+        uwsgi_pass unix:/srv/APIGW/apigw.sock;    
+        uwsgi_read_timeout 300;
+    }
+
+    location /f5app/ {
+        limit_req zone=limit-normal burst=20 nodelay;
+        include uwsgi_params;
+        uwsgi_pass unix:/srv/APIGW/apigw.sock;    
+        uwsgi_read_timeout 300;
+    }
+
+    location /fortiapp/ {
+        limit_req zone=limit-normal burst=20 nodelay;
+        include uwsgi_params;
+        uwsgi_pass unix:/srv/APIGW/apigw.sock;    
+        uwsgi_read_timeout 300;
+    }
+
+
+    location /static/ {
+        alias /srv/APIGW/static/;
+    }
+
+    location /admin/ {
+        limit_req zone=limit-normal burst=20 nodelay;
+        include uwsgi_params;
+        uwsgi_pass unix:/srv/APIGW/apigw.sock;
+        uwsgi_read_timeout 300;
+    }
+}
+
+
+**********************************************************************************
+
+
+
+cd sites-enabled
+ln -s /etc/nginx/sites-available/apigw.conf /etc/nginx/sites-enabled
+
+inside /etc/nginx/nginx.conf in http block:
+include /etc/nginx/sites-enabled/*.conf;
+
+nginx -t
+sudo service nginx restart

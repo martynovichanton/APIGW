@@ -1,0 +1,409 @@
+{
+	"info": {
+		"_postman_id": "998c4221-8e47-4f27-9b9b-c2432b849985",
+		"name": "Forti API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/fortiapi/FORTI_SITE1_GET_TOKEN",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user\":\"{{user}}\",\r\n    \"password\":\"{{password}}\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8000/fortiapi/FORTI_SITE1_GET_TOKEN",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"fortiapi",
+						"FORTI_SITE1_GET_TOKEN"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/fortiapi/FORTI_SITE2_GET_TOKEN",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user\":\"{{user}}\",\r\n    \"password\":\"{{password}}\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8000/fortiapi/FORTI_SITE2_GET_TOKEN",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"fortiapi",
+						"FORTI_SITE2_GET_TOKEN"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/fortiapi/FORTI_SITE1_ADD_TO_WHITELIST",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"memberlist\":[\"10.10.10.1/32\",\"10.10.10.0/24\",\"10.10.10.11-10.10.10.12\",\"10-p.com\"],\r\n    \"whitelist\":[\"testgroup_1\",\"testgroup_2\"],\r\n    \"nameprefix\":\"test_\",\r\n    \"token\":\"{{token}}\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8000/fortiapi/FORTI_SITE1_ADD_TO_WHITELIST",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"fortiapi",
+						"FORTI_SITE1_ADD_TO_WHITELIST"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/fortiapi/FORTI_SITE1_REMOVE_FROM_WHITELIST",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"memberlist\":[\"10.10.10.0/24\",\"10.10.10.11-10.10.10.12\",\"10-p.com\"],\r\n    \"whitelist\":[\"testgroup_1\",\"testgroup_2\"],\r\n    \"token\":\"{{token}}\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8000/fortiapi/FORTI_SITE1_REMOVE_FROM_WHITELIST",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"fortiapi",
+						"FORTI_SITE1_REMOVE_FROM_WHITELIST"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/fortiapi/FORTI_SITE1_GET_POLICY_PKG_STATUS",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"token\":\"{{token}}\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8000/fortiapi/FORTI_SITE1_GET_POLICY_PKG_STATUS",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"fortiapi",
+						"FORTI_SITE1_GET_POLICY_PKG_STATUS"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/fortiapi/FORTI_SITE1_GET_INSTALL_PREVIEW",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"token\":\"{{token}}\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8000/fortiapi/FORTI_SITE1_GET_INSTALL_PREVIEW",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"fortiapi",
+						"FORTI_SITE1_GET_INSTALL_PREVIEW"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/fortiapi/FORTI_SITE1_INSTALL_POLICY_ALL",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"token\":\"{{token}}\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8000/fortiapi/FORTI_SITE1_INSTALL_POLICY_ALL",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"fortiapi",
+						"FORTI_SITE1_INSTALL_POLICY_ALL"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/fortiapi/FORTI_SITE2_ADD_TO_WHITELIST",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"memberlist\":[\"10.10.10.1/32\",\"10.10.10.0/24\",\"10.10.10.11-10.10.10.12\",\"10-p.com\"],\r\n    \"whitelist\":[\"testgroup_1\",\"testgroup_2\"],\r\n    \"nameprefix\":\"test_\",\r\n    \"token\":\"{{token}}\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8000/fortiapi/FORTI_SITE2_ADD_TO_WHITELIST",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"fortiapi",
+						"FORTI_SITE2_ADD_TO_WHITELIST"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/fortiapi/FORTI_SITE2_REMOVE_FROM_WHITELIST",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"memberlist\":[\"10.10.10.0/24\",\"10.10.10.11-10.10.10.12\",\"10-p.com\"],\r\n    \"whitelist\":[\"testgroup_1\",\"testgroup_2\"],\r\n    \"token\":\"{{token}}\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8000/fortiapi/FORTI_SITE2_REMOVE_FROM_WHITELIST",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"fortiapi",
+						"FORTI_SITE2_REMOVE_FROM_WHITELIST"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/fortiapi/FORTI_SITE2_GET_POLICY_PKG_STATUS",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"token\":\"{{token}}\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8000/fortiapi/FORTI_SITE2_GET_POLICY_PKG_STATUS",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"fortiapi",
+						"FORTI_SITE2_GET_POLICY_PKG_STATUS"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/fortiapi/FORTI_SITE2_GET_INSTALL_PREVIEW",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"token\":\"{{token}}\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8000/fortiapi/FORTI_SITE2_GET_INSTALL_PREVIEW",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"fortiapi",
+						"FORTI_SITE2_GET_INSTALL_PREVIEW"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/fortiapi/FORTI_SITE2_INSTALL_POLICY_ALL",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"token\":\"{{token}}\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8000/fortiapi/FORTI_SITE2_INSTALL_POLICY_ALL",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"fortiapi",
+						"FORTI_SITE2_INSTALL_POLICY_ALL"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				],
+				"id": "63af98cc-c090-4b5d-bf8c-69f8ef56679e"
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				],
+				"id": "e0639d1b-4be2-4255-b771-4050d794f469"
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "701ffd4b-a237-440b-8076-3fdb79ecbe2f",
+			"key": "user",
+			"value": ""
+		},
+		{
+			"id": "52355922-550d-4898-8f04-da1ffc278820",
+			"key": "password",
+			"value": ""
+		},
+		{
+			"id": "571cb091-cd84-4cf1-a07d-28f294f4716d",
+			"key": "token",
+			"value": ""
+		}
+	],
+	"protocolProfileBehavior": {}
+}

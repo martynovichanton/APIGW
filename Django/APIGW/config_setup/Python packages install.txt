@@ -1,0 +1,24 @@
+sudo yum install python3-pip
+sudo yum install build-essential
+sudo yum update
+sudo pip3 install python-dev
+sudo pip3 install flask
+sudo pip3 install flask_restful
+sudo pip3 install flask_cors
+sudo pip3 install django
+sudo pip3 install djangorestframework
+sudo pip3 install django-cors-headers
+sudo pip3 install pandas
+sudo pip3 install paramiko
+sudo pip3 install urllib3
+sudo pip3 install requests
+sudo pip3 install asyncio
+sudo pip3 install aiohttp
+
+sudo yum install python36-devel
+sudo yum install pcre
+sudo yum install pcre-devel
+sudo yum install gcc
+sudo pip3 install uwsgi
+
+sudo yum install nginx

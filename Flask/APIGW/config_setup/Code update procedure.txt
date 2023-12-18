@@ -1,0 +1,24 @@
+
+
+APIGW\APP\static\js\appf5.js
+APIGW\APP\static\js\appforti.js
+change var device = 
+10.10.10.1
+
+copy APIGW via winscp to home folder
+sudo service apigw stop
+sudo service appgw stop
+cd /srv
+sudo ls -la
+sudo zip -r APIGW_20210525.zip APIGW
+sudo rm -rf APIGW
+sudo cp -r ~/APIGW/ .
+sudo chmod 775 /srv/APIGW
+sudo chmod 775 /srv/APIGW/API
+sudo chmod 775 /srv/APIGW/APP
+sudo chown -R antonm:grp-network /srv/APIGW
+sudo service apigw start
+sudo service appgw start
+sudo service apigw status
+sudo service appgw status
+
