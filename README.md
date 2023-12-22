@@ -22,7 +22,7 @@ Can be used withoug nginx
 
 ## Django
 ### Running the server
-1 project with 2 apps
+1 project with 2 apps  
 python manage.py runserver  
 
 
