@@ -444,7 +444,7 @@
 					"raw": "{\n    \"memberlist\":[\n        {\"name\":\"~Common~site1testnode3:443\", \"address\":\"10.99.99.3\", \"priorityGroup\":50},\n        {\"name\":\"~Common~site1testnode4:443\", \"address\":\"10.99.99.4\", \"priorityGroup\":50}\n    ],\n    \"pools\":[\"~Common~testpool99\",\"~Common~testpool99_2\"]\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8000/f5api/F5_SITE1_ADD_TO_POOL",
+					"raw": "http://localhost:8000/f5api/F5_SITE1_REMOVE_FROM_POOL",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -452,7 +452,7 @@
 					"port": "8000",
 					"path": [
 						"f5api",
-						"F5_SITE1_ADD_TO_POOL"
+						"F5_SITE1_REMOVE_FROM_POOL"
 					]
 				}
 			},
