@@ -255,7 +255,7 @@ class F5Site1Pools(View):
     def get(self, request):
         if request.headers['Content-Type'] == 'application/json' and 'token' in request.headers:
             try:
-                f5 = F5(config["site1"]["lb_site1_f502"], port, request.headers['token'])
+                f5 = F5(config["site1"]["lb_site1_f501"], port, request.headers['token'])
                 data = f5.pools()
             except Exception as e:
                 print(f"EXCEPTION: {e}")
@@ -268,7 +268,7 @@ class F5Site1PoolMembers(View):
     def get(self, request, pool_name):
         if request.headers['Content-Type'] == 'application/json' and 'token' in request.headers:
             try:
-                f5 = F5(config["site1"]["lb_site1_f502"], port, request.headers['token'])
+                f5 = F5(config["site1"]["lb_site1_f501"], port, request.headers['token'])
                 data = f5.pool_members(pool_name)
             except Exception as e:
                 print(f"EXCEPTION: {e}")
@@ -281,7 +281,7 @@ class F5Site1PoolMembersStats(View):
     def get(self, request, pool_name):
         if request.headers['Content-Type'] == 'application/json' and 'token' in request.headers:
             try:
-                f5 = F5(config["site1"]["lb_site1_f502"], port, request.headers['token'])
+                f5 = F5(config["site1"]["lb_site1_f501"], port, request.headers['token'])
                 data = f5.pool_members_stats(pool_name)
             except Exception as e:
                 print(f"EXCEPTION: {e}")
@@ -295,7 +295,7 @@ class F5Site1DisablePoolMember(View):
     def patch(self, request, pool_name, member_name):
         if request.headers['Content-Type'] == 'application/json' and 'token' in request.headers:
             try:
-                f5 = F5(config["site1"]["lb_site1_f502"], port, request.headers['token'])
+                f5 = F5(config["site1"]["lb_site1_f501"], port, request.headers['token'])
                 data = f5.disable_pool_member(pool_name, member_name)
             except Exception as e:
                 print(f"EXCEPTION: {e}")
@@ -309,7 +309,7 @@ class F5Site1EnablePoolMember(View):
     def patch(self, request, pool_name, member_name):
         if request.headers['Content-Type'] == 'application/json' and 'token' in request.headers:
             try:
-                f5 = F5(config["site1"]["lb_site1_f502"], port, request.headers['token'])
+                f5 = F5(config["site1"]["lb_site1_f501"], port, request.headers['token'])
                 data = f5.enable_pool_member(pool_name, member_name)
             except Exception as e:
                 print(f"EXCEPTION: {e}")
@@ -326,7 +326,7 @@ class F5Site1AddToPool(View):
                 if len(json.loads(request.body)['memberlist']) == 0 or len(json.loads(request.body)['pools']) == 0:
                     return JsonResponse({"Error":"Incorrect data"}, status=200)
                 actions_dir = "API/Actions/F5_SITE1_ADD_TO_POOL"
-                f5 = F5(config["site1"]["lb_site1_f502"], port, request.headers['token'])
+                f5 = F5(config["site1"]["lb_site1_f501"], port, request.headers['token'])
                 data = f5.add_to_pools(json.loads(request.body)['memberlist'], json.loads(request.body)['pools'], actions_dir)
                 data = iterate(actions_dir, request.headers['token'])
             except Exception as e:
@@ -344,7 +344,7 @@ class F5Site1RemoveFromPool(View):
                 if len(json.loads(request.body)['memberlist']) == 0 or len(json.loads(request.body)['pools']) == 0:
                     return JsonResponse({"Error":"Incorrect data"}, status=200)
                 actions_dir = "API/Actions/F5_SITE1_REMOVE_FROM_POOL"
-                f5 = F5(config["site1"]["lb_site1_f502"], port, request.headers['token'])
+                f5 = F5(config["site1"]["lb_site1_f501"], port, request.headers['token'])
                 data = f5.remove_from_pools(json.loads(request.body)['memberlist'], json.loads(request.body)['pools'], actions_dir)
                 data = iterate(actions_dir, request.headers['token'])
             except Exception as e:
@@ -358,7 +358,7 @@ class F5Site2Pools(View):
     def get(self, request):
         if request.headers['Content-Type'] == 'application/json' and 'token' in request.headers:
             try:
-                f5 = F5(config["site2"]["lb_site2_f502"], port, request.headers['token'])
+                f5 = F5(config["site2"]["lb_site2_f501"], port, request.headers['token'])
                 data = f5.pools()
             except Exception as e:
                 print(f"EXCEPTION: {e}")
@@ -371,7 +371,7 @@ class F5Site2PoolMembers(View):
     def get(self, request, pool_name):
         if request.headers['Content-Type'] == 'application/json' and 'token' in request.headers:
             try:
-                f5 = F5(config["site2"]["lb_site2_f502"], port, request.headers['token'])
+                f5 = F5(config["site2"]["lb_site2_f501"], port, request.headers['token'])
                 data = f5.pool_members(pool_name)
             except Exception as e:
                 print(f"EXCEPTION: {e}")
@@ -384,7 +384,7 @@ class F5Site2PoolMembersStats(View):
     def get(self, request, pool_name):
         if request.headers['Content-Type'] == 'application/json' and 'token' in request.headers:
             try:
-                f5 = F5(config["site2"]["lb_site2_f502"], port, request.headers['token'])
+                f5 = F5(config["site2"]["lb_site2_f501"], port, request.headers['token'])
                 data = f5.pool_members_stats(pool_name)
             except Exception as e:
                 print(f"EXCEPTION: {e}")
@@ -398,7 +398,7 @@ class F5Site2DisablePoolMember(View):
     def patch(self, request, pool_name, member_name):
         if request.headers['Content-Type'] == 'application/json' and 'token' in request.headers:
             try:
-                f5 = F5(config["site2"]["lb_site2_f502"], port, request.headers['token'])
+                f5 = F5(config["site2"]["lb_site2_f501"], port, request.headers['token'])
                 data = f5.disable_pool_member(pool_name, member_name)
             except Exception as e:
                 print(f"EXCEPTION: {e}")
@@ -412,7 +412,7 @@ class F5Site2EnablePoolMember(View):
     def patch(self, request, pool_name, member_name):
         if request.headers['Content-Type'] == 'application/json' and 'token' in request.headers:
             try:
-                f5 = F5(config["site2"]["lb_site2_f502"], port, request.headers['token'])
+                f5 = F5(config["site2"]["lb_site2_f501"], port, request.headers['token'])
                 data = f5.enable_pool_member(pool_name, member_name)
             except Exception as e:
                 print(f"EXCEPTION: {e}")
@@ -429,7 +429,7 @@ class F5Site2AddToPool(View):
                 if len(json.loads(request.body)['memberlist']) == 0 or len(json.loads(request.body)['pools']) == 0:
                     return JsonResponse({"Error":"Incorrect data"}, status=200)
                 actions_dir = "API/Actions/F5_SITE2_ADD_TO_POOL"
-                f5 = F5(config["site2"]["lb_site2_f502"], port, request.headers['token'])
+                f5 = F5(config["site2"]["lb_site2_f501"], port, request.headers['token'])
                 data = f5.add_to_pools(json.loads(request.body)['memberlist'], json.loads(request.body)['pools'], actions_dir)
                 data = iterate(actions_dir, request.headers['token'])
             except Exception as e:
@@ -447,7 +447,7 @@ class F5Site2RemoveFromPool(View):
                 if len(json.loads(request.body)['memberlist']) == 0 or len(json.loads(request.body)['pools']) == 0:
                     return JsonResponse({"Error":"Incorrect data"}, status=200)
                 actions_dir = "API/Actions/F5_SITE2_REMOVE_FROM_POOL"
-                f5 = F5(config["site2"]["lb_site2_f502"], port, request.headers['token'])
+                f5 = F5(config["site2"]["lb_site2_f501"], port, request.headers['token'])
                 data = f5.remove_from_pools(json.loads(request.body)['memberlist'], json.loads(request.body)['pools'], actions_dir)
                 data = iterate(actions_dir, request.headers['token'])
             except Exception as e:
@@ -467,7 +467,7 @@ class F5Site1UpdateCommands(View):
     def patch(self, request):
         if request.headers['Content-Type'] == 'application/json' and 'token' in request.headers:
             try:
-                f5 = F5(config["site1"]["lb_site1_f502"], port, request.headers['token'])
+                f5 = F5(config["site1"]["lb_site1_f501"], port, request.headers['token'])
                 data = f5_site1_update_commands(f5)
             except Exception as e:
                 print(f"EXCEPTION: {e}")
@@ -481,7 +481,7 @@ class F5Site2UpdateCommands(View):
     def patch(self, request):
         if request.headers['Content-Type'] == 'application/json' and 'token' in request.headers:
             try:
-                f5 = F5(config["site2"]["lb_site2_f502"], port, request.headers['token'])
+                f5 = F5(config["site2"]["lb_site2_f501"], port, request.headers['token'])
                 data = f5_site2_update_commands(f5)
             except Exception as e:
                 print(f"EXCEPTION: {e}")
