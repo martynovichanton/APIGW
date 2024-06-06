@@ -1,0 +1,6 @@
+post---/mgmt/tm/ltm/node---{"partition":"Common", "name":site1testnode3", "address":"10.99.99.3"}
+post---/mgmt/tm/util/bash---{"command":"run", "utilCmdArgs": "-c 'echo \"cd /Common; modify ltm pool testpool99 members add { site1testnode3:443 { priority-group 50 } }\" | tmsh | bash'"}
+post---/mgmt/tm/util/bash---{"command":"run", "utilCmdArgs": "-c 'echo \"cd /Common; modify ltm pool testpool99_2 members add { site1testnode3:443 { priority-group 50 } }\" | tmsh | bash'"}
+post---/mgmt/tm/ltm/node---{"partition":"Common", "name":site1testnode4", "address":"10.99.99.4"}
+post---/mgmt/tm/util/bash---{"command":"run", "utilCmdArgs": "-c 'echo \"cd /Common; modify ltm pool testpool99 members add { site1testnode4:443 { priority-group 50 } }\" | tmsh | bash'"}
+post---/mgmt/tm/util/bash---{"command":"run", "utilCmdArgs": "-c 'echo \"cd /Common; modify ltm pool testpool99_2 members add { site1testnode4:443 { priority-group 50 } }\" | tmsh | bash'"}

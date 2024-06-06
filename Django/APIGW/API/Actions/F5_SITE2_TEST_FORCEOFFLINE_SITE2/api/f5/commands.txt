@@ -1,0 +1,4 @@
+patch---/mgmt/tm/ltm/pool/~Common~testpool99/members/~Common~site2testnode1:443---{"session":"user-disabled", "state":"user-down"}
+patch---/mgmt/tm/ltm/pool/~Common~testpool99/members/~Common~site2testnode2:443---{"session":"user-disabled", "state":"user-down"}
+patch---/mgmt/tm/ltm/pool/~Common~testpool99_2/members/~Common~site2testnode1:443---{"session":"user-disabled", "state":"user-down"}
+patch---/mgmt/tm/ltm/pool/~Common~testpool99_2/members/~Common~site2testnode2:443---{"session":"user-disabled", "state":"user-down"}

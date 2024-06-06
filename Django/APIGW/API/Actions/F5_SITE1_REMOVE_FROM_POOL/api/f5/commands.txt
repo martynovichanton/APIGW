@@ -1,0 +1,4 @@
+post---/mgmt/tm/util/bash---{"command":"run", "utilCmdArgs": "-c 'echo \"cd /Common; modify ltm pool testpool99 members delete { site1testnode3:443 }\" | tmsh | bash'"}
+post---/mgmt/tm/util/bash---{"command":"run", "utilCmdArgs": "-c 'echo \"cd /Common; modify ltm pool testpool99_2 members delete { site1testnode3:443 }\" | tmsh | bash'"}
+post---/mgmt/tm/util/bash---{"command":"run", "utilCmdArgs": "-c 'echo \"cd /Common; modify ltm pool testpool99 members delete { site1testnode4:443 }\" | tmsh | bash'"}
+post---/mgmt/tm/util/bash---{"command":"run", "utilCmdArgs": "-c 'echo \"cd /Common; modify ltm pool testpool99_2 members delete { site1testnode4:443 }\" | tmsh | bash'"}
