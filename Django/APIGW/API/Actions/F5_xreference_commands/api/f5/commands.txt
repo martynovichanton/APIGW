@@ -1,0 +1,10 @@
+get---/mgmt/tm/ltm/pool/~Common~testpool99---
+patch---/mgmt/tm/ltm/pool/~Common~testpool99/members/~Common~testnode1:443---{"priorityGroup":100}
+patch---/mgmt/tm/ltm/pool/~Common~testpool99/members/~Common~testnode2:443---{"priorityGroup":50}
+patch---/mgmt/tm/ltm/pool/~Common~testpool99/members/~Common~testnode1:443---{"session":"user-disabled"}
+patch---/mgmt/tm/ltm/pool/~Common~testpool99/members/~Common~testnode1:443---{"session":"user-enabled"}
+post---/mgmt/tm/util/bash---{"command":"run", "utilCmdArgs": "-c 'echo \"cd /Common; delete /sys connection ss-server-addr 10.99.99.1%1 ss-server-port 443\" | tmsh | bash'"}
+post---/mgmt/tm/util/bash---{"command":"run", "utilCmdArgs": "-c 'echo \"cd /Common; delete /ltm persistence persist-records node-addr 10.99.99.1%1 node-port 443 \" | tmsh | bash'"}
+get---/mgmt/tm/ltm/pool/~Common~testpool99/members---
+get---/mgmt/tm/ltm/pool/~Common~testpool99/members/stats---
+get---/mgmt/tm/ltm/pool/~Common~testpool99/members?$select=name,fullPath,address,priorityGroup,state,selfLink---

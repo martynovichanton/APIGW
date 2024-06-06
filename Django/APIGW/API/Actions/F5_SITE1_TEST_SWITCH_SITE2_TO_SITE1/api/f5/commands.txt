@@ -1,0 +1,8 @@
+patch---/mgmt/tm/ltm/pool/~Common~testpool99/members/~Common~site1testnode1:443---{"priorityGroup":100}
+patch---/mgmt/tm/ltm/pool/~Common~testpool99/members/~Common~site1testnode2:443---{"priorityGroup":100}
+patch---/mgmt/tm/ltm/pool/~Common~testpool99/members/~Common~site2testnode1:443---{"priorityGroup":80}
+patch---/mgmt/tm/ltm/pool/~Common~testpool99/members/~Common~site2testnode2:443---{"priorityGroup":80}
+patch---/mgmt/tm/ltm/pool/~Common~testpool99_2/members/~Common~site1testnode1:443---{"priorityGroup":100}
+patch---/mgmt/tm/ltm/pool/~Common~testpool99_2/members/~Common~site1testnode2:443---{"priorityGroup":100}
+patch---/mgmt/tm/ltm/pool/~Common~testpool99_2/members/~Common~site2testnode1:443---{"priorityGroup":80}
+patch---/mgmt/tm/ltm/pool/~Common~testpool99_2/members/~Common~site2testnode2:443---{"priorityGroup":80}

@@ -19,6 +19,8 @@ import urllib3
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
+from .update_f5_commands import f5_site1_update_commands, f5_site2_update_commands
+
 
 f = open('API/config.py','r')
 config = json.load(f)
@@ -123,19 +125,26 @@ class IndexF5(View):
             "Options":[
                 "/f5api/F5_SITE1_GET_TOKEN GET -H password -H user",
                 "/f5api/F5_SITE2_GET_TOKEN GET -H password -H user",
-                "/f5api/F5_SITE3_GET_TOKEN GET -H password -H user",
-                "/f5api/F5_SITE1_commands1 PATCH -H token",
-                "/f5api/F5_SITE1_commands2 PATCH -H token",
+                "/f5api/F5_SITE1_TEST_SWITCH_SITE1_TO_SITE2 PATCH -H token",
+                "/f5api/F5_SITE1_TEST_SWITCH_SITE2_TO_SITE1 PATCH -H token",
+                "/f5api/F5_SITE1_TEST_ENABLE_SITE1 PATCH -H token",
+                "/f5api/F5_SITE1_TEST_ENABLE_SITE2 PATCH -H token",
+                "/f5api/F5_SITE1_TEST_FORCEOFFLINE_SITE1 PATCH -H token",
+                "/f5api/F5_SITE1_TEST_FORCEOFFLINE_SITE2 PATCH -H token",
+                "/f5api/F5_SITE1_ADD_TO_POOL PATCH -H token",
+                "/f5api/F5_SITE1_REMOVE_FROM_POOL PATCH -H token",
                 "/f5api/F5_SITE1_show_stats GET -H token",
                 "/f5api/F5_SITE1_show_config GET -H token",
-                "/f5api/F5_SITE2_commands1 PATCH -H token",
-                "/f5api/F5_SITE2_commands2 PATCH -H token",
+                "/f5api/F5_SITE2_TEST_SWITCH_SITE1_TO_SITE2 PATCH -H token",
+                "/f5api/F5_SITE2_TEST_SWITCH_SITE2_TO_SITE1 PATCH -H token",
+                "/f5api/F5_SITE2_TEST_ENABLE_SITE1 PATCH -H token",
+                "/f5api/F5_SITE2_TEST_ENABLE_SITE2 PATCH -H token",
+                "/f5api/F5_SITE2_TEST_FORCEOFFLINE_SITE1 PATCH -H token",
+                "/f5api/F5_SITE2_TEST_FORCEOFFLINE_SITE2 PATCH -H token",
+                "/f5api/F5_SITE2_ADD_TO_POOL PATCH -H token",
+                "/f5api/F5_SITE2_REMOVE_FROM_POOL PATCH -H token"
                 "/f5api/F5_SITE2_show_stats GET -H token",
-                "/f5api/F5_SITE2_show_config GET -H token",
-                "/f5api/F5_SITE3_commands1 PATCH -H token",
-                "/f5api/F5_SITE3_commands2 PATCH -H token",
-                "/f5api/F5_SITE3_show_stats GET -H token",
-                "/f5api/F5_SITE3_show_config GET -H token",
+                "/f5api/F5_SITE2_show_config GET -H token"
             ]
         }
         return JsonResponse(index)
@@ -181,19 +190,6 @@ class F5Site2GetToken(View):
                 data = f5.token(request.headers['user'], request.headers['password'])
             except Exception as e:
                 print(f"EXCEPTION: {e}")
-                return {"Error":"Bad request"}, 400
-            return JsonResponse(data)
-        else:
-            return JsonResponse({"Error":"Bad request"}, status=400)
-
-class F5Site3GetToken(View):
-    def get(self, request):
-        if request.headers['Content-Type'] == 'application/json' and 'user' in request.headers and 'password' in request.headers:
-            try:
-                f5 = F5(config["site3"]["lb_site3_f502"], port, "")
-                data = f5.token(request.headers['user'], request.headers['password'])
-            except Exception as e:
-                print(f"EXCEPTION: {e}")
                 return JsonResponse({"Error":"Bad request"}, status=400)
             return JsonResponse(data)
         else:
@@ -206,9 +202,7 @@ class F5Commands(View):
             "F5_SITE1_show_stats",
             "F5_SITE1_show_config",
             "F5_SITE2_show_stats",
-            "F5_SITE2_show_config",
-            "F5_SITE3_show_stats",
-            "F5_SITE3_show_config",
+            "F5_SITE2_show_config"
         ]
 
         if command not in allowed_commands:
@@ -226,12 +220,22 @@ class F5Commands(View):
     
     def patch(self, request, command):
         allowed_commands = [
-            "F5_SITE1_commands1",
-            "F5_SITE1_commands2",
-            "F5_SITE2_commands1",
-            "F5_SITE2_commands2",
-            "F5_SITE3_commands1",
-            "F5_SITE3_commands2"
+            "F5_SITE1_TEST_SWITCH_SITE1_TO_SITE2",
+            "F5_SITE1_TEST_SWITCH_SITE2_TO_SITE1",
+            "F5_SITE1_TEST_ENABLE_SITE1",
+            "F5_SITE1_TEST_ENABLE_SITE2",
+            "F5_SITE1_TEST_FORCEOFFLINE_SITE1",
+            "F5_SITE1_TEST_FORCEOFFLINE_SITE2",
+            "F5_SITE1_ADD_TO_POOL",
+            "F5_SITE1_REMOVE_FROM_POOL",
+            "F5_SITE2_TEST_SWITCH_SITE1_TO_SITE2",
+            "F5_SITE2_TEST_SWITCH_SITE2_TO_SITE1",
+            "F5_SITE2_TEST_ENABLE_SITE1",
+            "F5_SITE2_TEST_ENABLE_SITE2",
+            "F5_SITE2_TEST_FORCEOFFLINE_SITE1",
+            "F5_SITE2_TEST_FORCEOFFLINE_SITE2",
+            "F5_SITE2_ADD_TO_POOL",
+            "F5_SITE2_REMOVE_FROM_POOL"
         ]
 
         if command not in allowed_commands:
@@ -247,7 +251,244 @@ class F5Commands(View):
         else:
             return JsonResponse({"Error":"Bad request"}, status=400)
 
+class F5Site1Pools(View):
+    def get(self, request):
+        if request.headers['Content-Type'] == 'application/json' and 'token' in request.headers:
+            try:
+                f5 = F5(config["site1"]["lb_site1_f502"], port, request.headers['token'])
+                data = f5.pools()
+            except Exception as e:
+                print(f"EXCEPTION: {e}")
+                return JsonResponse({"Error":"Bad request"}, status=400)
+            return JsonResponse(data)
+        else:
+            return JsonResponse({"Error":"Bad request"}, status=400)
 
+class F5Site1PoolMembers(View):
+    def get(self, request, pool_name):
+        if request.headers['Content-Type'] == 'application/json' and 'token' in request.headers:
+            try:
+                f5 = F5(config["site1"]["lb_site1_f502"], port, request.headers['token'])
+                data = f5.pool_members(pool_name)
+            except Exception as e:
+                print(f"EXCEPTION: {e}")
+                return JsonResponse({"Error":"Bad request"}, status=400)
+            return JsonResponse(data)
+        else:
+            return JsonResponse({"Error":"Bad request"}, status=400)
+        
+class F5Site1PoolMembersStats(View):
+    def get(self, request, pool_name):
+        if request.headers['Content-Type'] == 'application/json' and 'token' in request.headers:
+            try:
+                f5 = F5(config["site1"]["lb_site1_f502"], port, request.headers['token'])
+                data = f5.pool_members_stats(pool_name)
+            except Exception as e:
+                print(f"EXCEPTION: {e}")
+                return JsonResponse({"Error":"Bad request"}, status=400)
+            return JsonResponse(data)
+        else:
+            return JsonResponse({"Error":"Bad request"}, status=400)
+
+@method_decorator(csrf_exempt, name='dispatch')
+class F5Site1DisablePoolMember(View):
+    def patch(self, request, pool_name, member_name):
+        if request.headers['Content-Type'] == 'application/json' and 'token' in request.headers:
+            try:
+                f5 = F5(config["site1"]["lb_site1_f502"], port, request.headers['token'])
+                data = f5.disable_pool_member(pool_name, member_name)
+            except Exception as e:
+                print(f"EXCEPTION: {e}")
+                return JsonResponse({"Error":"Bad request"}, status=400)
+            return JsonResponse(data)
+        else:
+            return JsonResponse({"Error":"Bad request"}, status=400)
+        
+@method_decorator(csrf_exempt, name='dispatch')
+class F5Site1EnablePoolMember(View):
+    def patch(self, request, pool_name, member_name):
+        if request.headers['Content-Type'] == 'application/json' and 'token' in request.headers:
+            try:
+                f5 = F5(config["site1"]["lb_site1_f502"], port, request.headers['token'])
+                data = f5.enable_pool_member(pool_name, member_name)
+            except Exception as e:
+                print(f"EXCEPTION: {e}")
+                return JsonResponse({"Error":"Bad request"}, status=400)
+            return JsonResponse(data)
+        else:
+            return JsonResponse({"Error":"Bad request"}, status=400)
+
+@method_decorator(csrf_exempt, name='dispatch')
+class F5Site1AddToPool(View):
+    def patch(self, request):
+        if request.headers['Content-Type'] == 'application/json' and 'token' in request.headers and 'memberlist' in json.loads(request.body) and 'pools' in json.loads(request.body):
+            try:
+                if len(json.loads(request.body)['memberlist']) == 0 or len(json.loads(request.body)['pools']) == 0:
+                    return JsonResponse({"Error":"Incorrect data"}, status=200)
+                actions_dir = "API/Actions/F5_SITE1_ADD_TO_POOL"
+                f5 = F5(config["site1"]["lb_site1_f502"], port, request.headers['token'])
+                data = f5.add_to_pools(json.loads(request.body)['memberlist'], json.loads(request.body)['pools'], actions_dir)
+                data = iterate(actions_dir, request.headers['token'])
+            except Exception as e:
+                print(f"EXCEPTION: {e}")
+                return JsonResponse({"Error":"Bad request"}, status=400)
+            return JsonResponse(data)
+        else:
+            return JsonResponse({"Error":"Bad request"}, status=400)
+
+@method_decorator(csrf_exempt, name='dispatch')
+class F5Site1RemoveFromPool(View):
+    def patch(self, request):
+        if request.headers['Content-Type'] == 'application/json' and 'token' in request.headers and 'memberlist' in json.loads(request.body) and 'pools' in json.loads(request.body):
+            try:
+                if len(json.loads(request.body)['memberlist']) == 0 or len(json.loads(request.body)['pools']) == 0:
+                    return JsonResponse({"Error":"Incorrect data"}, status=200)
+                actions_dir = "API/Actions/F5_SITE1_REMOVE_FROM_POOL"
+                f5 = F5(config["site1"]["lb_site1_f502"], port, request.headers['token'])
+                data = f5.remove_from_pools(json.loads(request.body)['memberlist'], json.loads(request.body)['pools'], actions_dir)
+                data = iterate(actions_dir, request.headers['token'])
+            except Exception as e:
+                print(f"EXCEPTION: {e}")
+                return JsonResponse({"Error":"Bad request"}, status=400)
+            return JsonResponse(data)
+        else:
+            return JsonResponse({"Error":"Bad request"}, status=400)
+        
+class F5Site2Pools(View):
+    def get(self, request):
+        if request.headers['Content-Type'] == 'application/json' and 'token' in request.headers:
+            try:
+                f5 = F5(config["site2"]["lb_site2_f502"], port, request.headers['token'])
+                data = f5.pools()
+            except Exception as e:
+                print(f"EXCEPTION: {e}")
+                return JsonResponse({"Error":"Bad request"}, status=400)
+            return JsonResponse(data)
+        else:
+            return JsonResponse({"Error":"Bad request"}, status=400)
+
+class F5Site2PoolMembers(View):
+    def get(self, request, pool_name):
+        if request.headers['Content-Type'] == 'application/json' and 'token' in request.headers:
+            try:
+                f5 = F5(config["site2"]["lb_site2_f502"], port, request.headers['token'])
+                data = f5.pool_members(pool_name)
+            except Exception as e:
+                print(f"EXCEPTION: {e}")
+                return JsonResponse({"Error":"Bad request"}, status=400)
+            return JsonResponse(data)
+        else:
+            return JsonResponse({"Error":"Bad request"}, status=400)
+        
+class F5Site2PoolMembersStats(View):
+    def get(self, request, pool_name):
+        if request.headers['Content-Type'] == 'application/json' and 'token' in request.headers:
+            try:
+                f5 = F5(config["site2"]["lb_site2_f502"], port, request.headers['token'])
+                data = f5.pool_members_stats(pool_name)
+            except Exception as e:
+                print(f"EXCEPTION: {e}")
+                return JsonResponse({"Error":"Bad request"}, status=400)
+            return JsonResponse(data)
+        else:
+            return JsonResponse({"Error":"Bad request"}, status=400)
+
+@method_decorator(csrf_exempt, name='dispatch')
+class F5Site2DisablePoolMember(View):
+    def patch(self, request, pool_name, member_name):
+        if request.headers['Content-Type'] == 'application/json' and 'token' in request.headers:
+            try:
+                f5 = F5(config["site2"]["lb_site2_f502"], port, request.headers['token'])
+                data = f5.disable_pool_member(pool_name, member_name)
+            except Exception as e:
+                print(f"EXCEPTION: {e}")
+                return JsonResponse({"Error":"Bad request"}, status=400)
+            return JsonResponse(data)
+        else:
+            return JsonResponse({"Error":"Bad request"}, status=400)
+        
+@method_decorator(csrf_exempt, name='dispatch')
+class F5Site2EnablePoolMember(View):
+    def patch(self, request, pool_name, member_name):
+        if request.headers['Content-Type'] == 'application/json' and 'token' in request.headers:
+            try:
+                f5 = F5(config["site2"]["lb_site2_f502"], port, request.headers['token'])
+                data = f5.enable_pool_member(pool_name, member_name)
+            except Exception as e:
+                print(f"EXCEPTION: {e}")
+                return JsonResponse({"Error":"Bad request"}, status=400)
+            return JsonResponse(data)
+        else:
+            return JsonResponse({"Error":"Bad request"}, status=400)
+
+@method_decorator(csrf_exempt, name='dispatch')
+class F5Site2AddToPool(View):
+    def patch(self, request):
+        if request.headers['Content-Type'] == 'application/json' and 'token' in request.headers and 'memberlist' in json.loads(request.body) and 'pools' in json.loads(request.body):
+            try:
+                if len(json.loads(request.body)['memberlist']) == 0 or len(json.loads(request.body)['pools']) == 0:
+                    return JsonResponse({"Error":"Incorrect data"}, status=200)
+                actions_dir = "API/Actions/F5_SITE2_ADD_TO_POOL"
+                f5 = F5(config["site2"]["lb_site2_f502"], port, request.headers['token'])
+                data = f5.add_to_pools(json.loads(request.body)['memberlist'], json.loads(request.body)['pools'], actions_dir)
+                data = iterate(actions_dir, request.headers['token'])
+            except Exception as e:
+                print(f"EXCEPTION: {e}")
+                return JsonResponse({"Error":"Bad request"}, status=400)
+            return JsonResponse(data)
+        else:
+            return JsonResponse({"Error":"Bad request"}, status=400)
+
+@method_decorator(csrf_exempt, name='dispatch')
+class F5Site2RemoveFromPool(View):
+    def patch(self, request):
+        if request.headers['Content-Type'] == 'application/json' and 'token' in request.headers and 'memberlist' in json.loads(request.body) and 'pools' in json.loads(request.body):
+            try:
+                if len(json.loads(request.body)['memberlist']) == 0 or len(json.loads(request.body)['pools']) == 0:
+                    return JsonResponse({"Error":"Incorrect data"}, status=200)
+                actions_dir = "API/Actions/F5_SITE2_REMOVE_FROM_POOL"
+                f5 = F5(config["site2"]["lb_site2_f502"], port, request.headers['token'])
+                data = f5.remove_from_pools(json.loads(request.body)['memberlist'], json.loads(request.body)['pools'], actions_dir)
+                data = iterate(actions_dir, request.headers['token'])
+            except Exception as e:
+                print(f"EXCEPTION: {e}")
+                return JsonResponse({"Error":"Bad request"}, status=400)
+            return JsonResponse(data)
+        else:
+            return JsonResponse({"Error":"Bad request"}, status=400)
+
+        
+#########################################################################################
+######## Update F5 commands
+#########################################################################################
+
+@method_decorator(csrf_exempt, name='dispatch')
+class F5Site1UpdateCommands(View):
+    def patch(self, request):
+        if request.headers['Content-Type'] == 'application/json' and 'token' in request.headers:
+            try:
+                f5 = F5(config["site1"]["lb_site1_f502"], port, request.headers['token'])
+                data = f5_site1_update_commands(f5)
+            except Exception as e:
+                print(f"EXCEPTION: {e}")
+                return JsonResponse({"Error":"Bad request"}, status=400)
+            return JsonResponse(data)
+        else:
+            return JsonResponse({"Error":"Bad request"}, status=400)
+
+@method_decorator(csrf_exempt, name='dispatch')
+class F5Site2UpdateCommands(View):
+    def patch(self, request):
+        if request.headers['Content-Type'] == 'application/json' and 'token' in request.headers:
+            try:
+                f5 = F5(config["site2"]["lb_site2_f502"], port, request.headers['token'])
+                data = f5_site2_update_commands(f5)
+            except Exception as e:
+                print(f"EXCEPTION: {e}")
+                return JsonResponse({"Error":"Bad request"}, status=400)
+            return JsonResponse(data)
+        else:
+            return JsonResponse({"Error":"Bad request"}, status=400)
 
 #########################################################################################
 ######## Forti

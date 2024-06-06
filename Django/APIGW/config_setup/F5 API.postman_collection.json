@@ -45,6 +45,11 @@
 						"value": "application/json"
 					},
 					{
+						"key": "Cache-Control",
+						"value": "no-cache",
+						"type": "text"
+					},
+					{
 						"key": "user",
 						"value": "{{user}}"
 					},
@@ -81,6 +86,11 @@
 						"value": "application/json"
 					},
 					{
+						"key": "Cache-Control",
+						"value": "no-cache",
+						"type": "text"
+					},
+					{
 						"key": "user",
 						"value": "{{user}}"
 					},
@@ -105,7 +115,10 @@
 			"response": []
 		},
 		{
-			"name": "/f5api/F5_SITE3_GET_TOKEN",
+			"name": "/f5api/F5_SITE1_POOLS",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"auth": {
 					"type": "noauth"
@@ -117,40 +130,9 @@
 						"value": "application/json"
 					},
 					{
-						"key": "user",
-						"value": "{{user}}"
-					},
-					{
-						"key": "password",
-						"value": "{{password}}"
-					}
-				],
-				"url": {
-					"raw": "http://localhost:8000/f5api/F5_SITE3_GET_TOKEN",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8000",
-					"path": [
-						"f5api",
-						"F5_SITE3_GET_TOKEN"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "/f5api/F5_SITE1_commands1",
-			"request": {
-				"auth": {
-					"type": "noauth"
-				},
-				"method": "PATCH",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
+						"key": "Cache-Control",
+						"value": "no-cache",
+						"type": "text"
 					},
 					{
 						"key": "token",
@@ -162,7 +144,7 @@
 					"formdata": []
 				},
 				"url": {
-					"raw": "http://localhost:8000/f5api/F5_SITE1_commands1",
+					"raw": "http://localhost:8000/f5api/F5_SITE1_POOLS",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -170,23 +152,31 @@
 					"port": "8000",
 					"path": [
 						"f5api",
-						"F5_SITE1_commands1"
+						"F5_SITE1_POOLS"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "/f5api/F5_SITE1_commands2",
+			"name": "/f5api/F5_SITE1_POOL_MEMBERS/<pool_name>",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"auth": {
 					"type": "noauth"
 				},
-				"method": "PATCH",
+				"method": "GET",
 				"header": [
 					{
 						"key": "Content-Type",
 						"value": "application/json"
+					},
+					{
+						"key": "Cache-Control",
+						"type": "text",
+						"value": "no-cache"
 					},
 					{
 						"key": "token",
@@ -198,7 +188,7 @@
 					"formdata": []
 				},
 				"url": {
-					"raw": "http://localhost:8000/f5api/F5_SITE1_commands2",
+					"raw": "http://localhost:8000/f5api/F5_SITE1_POOL_MEMBERS/~Common~testpool99",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -206,7 +196,263 @@
 					"port": "8000",
 					"path": [
 						"f5api",
-						"F5_SITE1_commands2"
+						"F5_SITE1_POOL_MEMBERS",
+						"~Common~testpool99"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/f5api/F5_SITE1_POOL_MEMBERS/<pool_name>/STATS",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Cache-Control",
+						"type": "text",
+						"value": "no-cache"
+					},
+					{
+						"key": "token",
+						"value": "{{token}}"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:8000/f5api/F5_SITE1_POOL_MEMBERS/~Common~testpool99/STATS",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"f5api",
+						"F5_SITE1_POOL_MEMBERS",
+						"~Common~testpool99",
+						"STATS"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/f5api/F5_SITE1_DISABLE_POOL_MEMBER/<pool_name>/<member_name>",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Cache-Control",
+						"type": "text",
+						"value": "no-cache"
+					},
+					{
+						"key": "token",
+						"value": "{{token}}"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:8000/f5api/F5_SITE1_DISABLE_POOL_MEMBER/~Common~testpool99/~Common~site1testnode1:443",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"f5api",
+						"F5_SITE1_DISABLE_POOL_MEMBER",
+						"~Common~testpool99",
+						"~Common~site1testnode1:443"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/f5api/F5_SITE1_ENABLE_POOL_MEMBER/<pool_name>/<member_name>",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Cache-Control",
+						"type": "text",
+						"value": "no-cache"
+					},
+					{
+						"key": "token",
+						"value": "{{token}}"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:8000/f5api/F5_SITE1_ENABLE_POOL_MEMBER/~Common~testpool99/~Common~site1testnode1:443",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"f5api",
+						"F5_SITE1_ENABLE_POOL_MEMBER",
+						"~Common~testpool99",
+						"~Common~site1testnode1:443"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/f5api/F5_SITE1_UPDATE_COMMANDS",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Cache-Control",
+						"type": "text",
+						"value": "no-cache"
+					},
+					{
+						"key": "token",
+						"value": "{{token}}"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:8000/f5api/F5_SITE1_UPDATE_COMMANDS",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"f5api",
+						"F5_SITE1_UPDATE_COMMANDS"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/f5api/F5_SITE1_ADD_TO_POOL",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Cache-Control",
+						"type": "text",
+						"value": "no-cache"
+					},
+					{
+						"key": "token",
+						"value": "{{token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"memberlist\":[\n        {\"name\":\"~Common~site1testnode1:443\", \"address\":\"10.99.99.1\", \"priorityGroup\":50},\n        {\"name\":\"~Common~site1testnode2:443\", \"address\":\"10.99.99.2\", \"priorityGroup\":50},\n        {\"name\":\"~Common~site1testnode3:443\", \"address\":\"10.99.99.3\", \"priorityGroup\":50},\n        {\"name\":\"~Common~site1testnode4:443\", \"address\":\"10.99.99.4\", \"priorityGroup\":50}\n    ],\n    \"pools\":[\"~Common~testpool99\",\"~Common~testpool99_2\"]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8000/f5api/F5_SITE1_ADD_TO_POOL",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"f5api",
+						"F5_SITE1_ADD_TO_POOL"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/f5api/F5_SITE1_REMOVE_FROM_POOL",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Cache-Control",
+						"type": "text",
+						"value": "no-cache"
+					},
+					{
+						"key": "token",
+						"value": "{{token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"memberlist\":[\n        {\"name\":\"~Common~site1testnode3:443\", \"address\":\"10.99.99.3\", \"priorityGroup\":50},\n        {\"name\":\"~Common~site1testnode4:443\", \"address\":\"10.99.99.4\", \"priorityGroup\":50}\n    ],\n    \"pools\":[\"~Common~testpool99\",\"~Common~testpool99_2\"]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8000/f5api/F5_SITE1_ADD_TO_POOL",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"f5api",
+						"F5_SITE1_ADD_TO_POOL"
 					]
 				}
 			},
@@ -226,6 +472,11 @@
 					{
 						"key": "Content-Type",
 						"value": "application/json"
+					},
+					{
+						"key": "Cache-Control",
+						"value": "no-cache",
+						"type": "text"
 					},
 					{
 						"key": "token",
@@ -265,6 +516,11 @@
 					{
 						"key": "Content-Type",
 						"value": "application/json"
+					},
+					{
+						"key": "Cache-Control",
+						"value": "no-cache",
+						"type": "text"
 					},
 					{
 						"key": "token",

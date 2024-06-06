@@ -1,2 +1,2 @@
-get---/mgmt/tm/ltm/pool/~Partition01~testpool99/members/stats---
-get---/mgmt/tm/ltm/pool/~Partition01~testpool99/members/stats---
+get---/mgmt/tm/ltm/pool/~Common~testpool99/members/stats---
+get---/mgmt/tm/ltm/pool/~Common~testpool99_2/members/stats---

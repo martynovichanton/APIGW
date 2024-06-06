@@ -1,18 +1,4 @@
-"""APIGW URL Configuration
 
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/4.1/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
 # from django.contrib import admin
 from django.urls import path, include
 from API import views as APIVIEWS
@@ -24,7 +10,25 @@ urlpatterns = [
     path('f5api/', APIVIEWS.IndexF5.as_view(), name='INDEXF5API'),
     path('f5api/F5_SITE1_GET_TOKEN', APIVIEWS.F5Site1GetToken.as_view(), name='F5_SITE1_GET_TOKEN'),
     path('f5api/F5_SITE2_GET_TOKEN', APIVIEWS.F5Site2GetToken.as_view(), name='F5_SITE2_GET_TOKEN'),
-    path('f5api/F5_SITE3_GET_TOKEN', APIVIEWS.F5Site3GetToken.as_view(), name='F5_SITE3_GET_TOKEN'),
+
+    path('f5api/F5_SITE1_POOLS', APIVIEWS.F5Site1Pools.as_view(), name='F5_SITE1_POOLS'),
+    path('f5api/F5_SITE1_POOL_MEMBERS/<pool_name>', APIVIEWS.F5Site1PoolMembers.as_view(), name='F5_SITE1_POOL_MEMBERS'),
+    path('f5api/F5_SITE1_POOL_MEMBERS/<pool_name>/STATS', APIVIEWS.F5Site1PoolMembersStats.as_view(), name='F5_SITE1_POOL_MEMBERS_STATS'),
+    path('f5api/F5_SITE1_DISABLE_POOL_MEMBER/<pool_name>/<member_name>', APIVIEWS.F5Site1DisablePoolMember.as_view(), name='F5_SITE1_DISABLE_POOL_MEMBER'),
+    path('f5api/F5_SITE1_ENABLE_POOL_MEMBER/<pool_name>/<member_name>', APIVIEWS.F5Site1EnablePoolMember.as_view(), name='F5_SITE1_ENABLE_POOL_MEMBER'),
+    path('f5api/F5_SITE1_ADD_TO_POOL', APIVIEWS.F5Site1AddToPool.as_view(), name='F5_SITE1_ADD_TO_POOL'),
+    path('f5api/F5_SITE1_REMOVE_FROM_POOL', APIVIEWS.F5Site1RemoveFromPool.as_view(), name='F5_SITE1_REMOVE_FROM_POOL'),
+    path('f5api/F5_SITE1_UPDATE_COMMANDS', APIVIEWS.F5Site1UpdateCommands.as_view(), name='F5_SITE1_UPDATE_COMMANDS'),
+
+    path('f5api/F5_SITE2_POOLS', APIVIEWS.F5Site2Pools.as_view(), name='F5_SITE2_POOLS'),
+    path('f5api/F5_SITE2_POOL_MEMBERS/<pool_name>', APIVIEWS.F5Site2PoolMembers.as_view(), name='F5_SITE2_POOL_MEMBERS'),
+    path('f5api/F5_SITE2_POOL_MEMBERS/<pool_name>/STATS', APIVIEWS.F5Site2PoolMembersStats.as_view(), name='F5_SITE2_POOL_MEMBERS_STATS'),
+    path('f5api/F5_SITE2_DISABLE_POOL_MEMBER/<pool_name>/<member_name>', APIVIEWS.F5Site2DisablePoolMember.as_view(), name='F5_SITE2_DISABLE_POOL_MEMBER'),
+    path('f5api/F5_SITE2_ENABLE_POOL_MEMBER/<pool_name>/<member_name>', APIVIEWS.F5Site2EnablePoolMember.as_view(), name='F5_SITE2_ENABLE_POOL_MEMBER'),
+    path('f5api/F5_SITE2_ADD_TO_POOL', APIVIEWS.F5Site2AddToPool.as_view(), name='F5_SITE2_ADD_TO_POOL'),
+    path('f5api/F5_SITE2_REMOVE_FROM_POOL', APIVIEWS.F5Site2RemoveFromPool.as_view(), name='F5_SITE2_REMOVE_FROM_POOL'),
+    path('f5api/F5_SITE2_UPDATE_COMMANDS', APIVIEWS.F5Site2UpdateCommands.as_view(), name='F5_SITE2_UPDATE_COMMANDS'),
+
     path('f5api/<command>', APIVIEWS.F5Commands.as_view(), name='F5_COMMANDS'),
 
     path('fortiapi/', APIVIEWS.IndexForti.as_view(), name='INDEXFORTIAPI'),
