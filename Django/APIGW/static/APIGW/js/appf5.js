@@ -122,6 +122,7 @@ $(document).ready(function(){
                     for (var entry in pool_stat.entries){
                         var pool_name = pool_stat["entries"][entry]["nestedStats"]["entries"]["poolName"]["description"];
                         var addr = pool_stat["entries"][entry]["nestedStats"]["entries"]["addr"]["description"];
+                        var port = pool_stat["entries"][entry]["nestedStats"]["entries"]["port"]["description"];
                         var node_name = pool_stat["entries"][entry]["nestedStats"]["entries"]["nodeName"]["description"];
                         var availability_status = pool_stat["entries"][entry]["nestedStats"]["entries"]["status.availabilityState"]["description"];
                         var enabled_state = pool_stat["entries"][entry]["nestedStats"]["entries"]["status.enabledState"]["description"];
@@ -148,7 +149,7 @@ $(document).ready(function(){
                             }
                         });
                     
-                        var row = '<tr><td>' + pool_name + '</td><td>' + addr + '</td><td>' + node_name + '</td><td>' + availability_status + '</td><td>' + enabled_state + '</td><td>' + conns + '</td><td>' + prio + '</td></tr>';
+                        var row = '<tr><td>' + pool_name + '</td><td>' + addr + '</td><td>' + port + '</td><td>' + node_name + '</td><td>' + availability_status + '</td><td>' + enabled_state + '</td><td>' + conns + '</td><td>' + prio + '</td></tr>';
                         
                         $('#tableLog tbody').append(row);
                     }
@@ -173,11 +174,12 @@ $(document).ready(function(){
         rowSelected.className = "rowSelected";
         msg = 'Poolname: ' + rowSelected.cells[0].innerHTML;
         msg += '\nIP: ' + rowSelected.cells[1].innerHTML;
-        msg += '\nNodename: ' + rowSelected.cells[2].innerHTML;
-        msg += '\nAvailability: ' + rowSelected.cells[3].innerHTML;
-        msg += '\nEnabled: ' + rowSelected.cells[4].innerHTML;
-        msg += '\nConns: ' + rowSelected.cells[5].innerHTML;
-        msg += '\nPrio: ' + rowSelected.cells[6].innerHTML;
+        msg += '\nPort: ' + rowSelected.cells[2].innerHTML;
+        msg += '\nNodename: ' + rowSelected.cells[3].innerHTML;
+        msg += '\nAvailability: ' + rowSelected.cells[4].innerHTML;
+        msg += '\nEnabled: ' + rowSelected.cells[5].innerHTML;
+        msg += '\nConns: ' + rowSelected.cells[6].innerHTML;
+        msg += '\nPrio: ' + rowSelected.cells[7].innerHTML;
         msg += '\nclicked: ' + this.innerHTML;
         console.log(msg);
     });

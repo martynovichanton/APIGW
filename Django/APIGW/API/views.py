@@ -41,7 +41,7 @@ def iterate(folder, token, RUN_MULTITHREADING=False):
     dataset = []
 
     now = datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
-    outputDir = "output" + "-" + now
+    outputDir = f"output/output-{now}"
     if not os.path.exists(f"{mainDir}/{outputDir}"):
         os.mkdir(f"{mainDir}/{outputDir}")
     
